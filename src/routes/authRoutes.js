@@ -46,6 +46,12 @@ router.post('/register', (req,res)=>{
         // the run method here is used to execute prepare statement with the values we have injected
         // in this case we are inserting username and hashed password into the users table in the database
 
+        // now that my app has a user, im going to create a default todo for them to kinda show
+        // how the app works.
+
+        const defaultTodo = 'heyyy :D Add your first todo!';
+        
+
     }
     catch(err){
         console.log(err.message);

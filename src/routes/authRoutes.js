@@ -50,6 +50,9 @@ router.post('/register', (req,res)=>{
         // how the app works.
 
         const defaultTodo = 'heyyy :D Add your first todo!';
+        const insertTodo = db.prepare('INSERT INTO todos (user_id, task) VALUES (?, ?)');
+
+        insertTodo.run(result.lastInsertedRowid, defaultTodo);
         
 
     }

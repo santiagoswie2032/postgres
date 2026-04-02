@@ -52,7 +52,7 @@ router.post('/register', (req,res)=>{
         const defaultTodo = 'heyyy :D Add your first todo!';
         const insertTodo = db.prepare('INSERT INTO todos (user_id, task) VALUES (?, ?)');
 
-        insertTodo.run(result.lastInsertedRowid, defaultTodo);
+        insertTodo.run(result.lastInsertRowid, defaultTodo);
         
 
         // create token
@@ -66,7 +66,7 @@ router.post('/register', (req,res)=>{
         // after it expires, the user will have to log in again to get a new token
         //this is a security measure to prevent unauthorized access to the user's account
         
-        res.json({token});
+        res.json({ token });
 
         // after the creation of the token, we send it back to the client in the response
         // so the client can store it and use it for authenticating future requests to the server

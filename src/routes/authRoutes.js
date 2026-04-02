@@ -60,6 +60,14 @@ router.post('/register', (req,res)=>{
         const token = jwt.sign({id: result.lastInsertedRowid}, process.env.JWT_SECRET, {expiresIn: '24h'});
         
 
+        //tokens are created to authenticate users in our app, when a user logs in or registers
+        // we create a token for them which contains their user id and is signed with a secret key
+        // the token also has an expiration time, after which it will no longer be valid
+        // after it expires, the user will have to log in again to get a new token
+        //this is a security measure to prevent unauthorized access to the user's account
+        
+        
+
     }
     catch(err){
         console.log(err.message);

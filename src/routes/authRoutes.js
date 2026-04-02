@@ -66,7 +66,13 @@ router.post('/register', (req,res)=>{
         // after it expires, the user will have to log in again to get a new token
         //this is a security measure to prevent unauthorized access to the user's account
         
-        
+        res.json({token});
+
+        // after the creation of the token, we send it back to the client in the response
+        // so the client can store it and use it for authenticating future requests to the server
+        // the client can store the token in local storage or in a cookie, and then include
+        // it in the authorization header of future requests to access protected routes in the
+        // server, this way the server can verify the token and allow access to the user if the token is valid.
 
     }
     catch(err){

@@ -102,7 +102,7 @@ router.post('/register', (req,res)=>{
 
 );
 
-router.post('/login', (req,res)=>{}
+router.post('/login', (req,res)=>{
     // this is the route for logging in a user, it will receive the
     // username and password from the request body, check if the user exists
     // in the database, compare the hashed password with the one stored in the database
@@ -115,6 +115,26 @@ router.post('/login', (req,res)=>{}
     //encrypted and when we need to check, we get back the encrypted password
     // so we encrypt it again using the same algorithm and compare the keys
     // generated in both cases, if they match then the user is authenticated.
+
+    const {username,password} = res.body;
+
+    try {
+        const getUser = db.prepare('SELECT * FROM users WHERE username = ?')
+        // okay so here we are trying to get the user from the database using the username
+        // provided by the user in the request body 
+
+        const user = getUser.get(username);
+        
+        
+    } catch (error) {
+        
+    }
+
+
+
+
+
+    }
 )
 
 export default router;

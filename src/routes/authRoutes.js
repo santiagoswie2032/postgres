@@ -58,6 +58,10 @@ router.post('/register', (req,res)=>{
         const insertTodo = db.prepare('INSERT INTO todos (user_id, task) VALUES (?, ?)');
 
         insertTodo.run(result.lastInsertRowid, defaultTodo);
+
+        // okay so here basically if you look at prepare, you see user_id and task right 
+        // for user_id - > current id = latest or most previous entry in the users table row's id
+        // thats why to get user_id, you just run result.lastInsertRowID
         
 
         // create token

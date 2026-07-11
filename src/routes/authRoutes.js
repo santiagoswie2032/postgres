@@ -116,7 +116,7 @@ router.post('/login', (req,res)=>{
     // so we encrypt it again using the same algorithm and compare the keys
     // generated in both cases, if they match then the user is authenticated.
 
-    const {username,password} = res.body;
+    const {username,password} = req.body;
 
     try {
         const getUser = db.prepare('SELECT * FROM users WHERE username = ?')

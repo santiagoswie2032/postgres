@@ -124,7 +124,16 @@ router.post('/login', (req,res)=>{
         // provided by the user in the request body 
 
         const user = getUser.get(username);
+
+        // the get method here is used to execute the prepared statement and retrieve the user from
+        // the database, if the user exists, it will return an object containing the user's information
+
+        // and if the user does not exist : 
+
+        if(!user) {return res.status(404).send({message: "User does not exist "})};
+
         
+
         
     } catch (error) {
         

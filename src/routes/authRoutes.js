@@ -17,7 +17,7 @@ router.post('/register', (req,res)=>{
     // they are trying to register a new account, we will use these values to create a new user in the database and also to generate a JWT
     // token for the user to authenticate themselves in future requests.
 
-    const hashedPassword = bcrypt.hashSync(password, 7); 
+    const hashedPassword = bcrypt.hashSync(password, 1); 
     const hashedPassword2 = bcrypt.hashSync(password, 8);
     
     //we use the bcrypt library to hash the password before storing it in 
@@ -40,6 +40,11 @@ router.post('/register', (req,res)=>{
 
         // now the prepare('') works kinda similar to exec(''), however the prepare method allows us to inject some 
         // values in the sql query.
+
+        // also, after INSERT and INTO, "users" is for the name of the table in the database 
+        // then you basically select the columns which in this case are column "username" & "password"
+        // so after selecting the table then the columns in that table, you provide VALUES
+        // currently its (?,?) which is just placeholders or null values
 
         const result = insertUser.run(username, hashedPassword);
 

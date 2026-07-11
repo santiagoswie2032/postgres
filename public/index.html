@@ -217,7 +217,9 @@
             if (data.token) {
                 token = data.token
                 localStorage.setItem('token', token)
-
+                
+                // similar to how you'd accept cookies in a site
+                
                 // authenicating into loading
                 authBtn.innerText = 'Loading...'
 

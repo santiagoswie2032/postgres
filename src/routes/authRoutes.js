@@ -1,6 +1,6 @@
 import express from "express";  // this is the file where we will be handling all the authentication related routes like login and register
 import bcrypt from "bcryptjs";    // this is the library which we will be using for hashing the password before storing it in the database, it provides a simple way to hash and compare passwords securely.
-import jwt, { sign } from "jsonwebtoken"; // this is the library which we will be using for generating and verifying JSON Web Tokens (JWTs), which are used for authentication and authorization in our application.
+import jwt from "jsonwebtoken"; // this is the library which we will be using for generating and verifying JSON Web Tokens (JWTs), which are used for authentication and authorization in our application.
 import db from "../db.js"; // this is the file where we have defined our database connection and exported it, we will be using this to interact with our database.
 
 
@@ -34,7 +34,7 @@ router.post('/register', (req,res)=>{
     console.log(username,password);
 
     console.log(hashedPassword);
-    console.log(hashedPassword2);
+   // console.log(hashedPassword2);
 
     try{
         const insertUser = db.prepare('INSERT INTO users (username, password) VALUES (?,?)');
@@ -156,7 +156,7 @@ router.post('/login', (req,res)=>{
         // if the dude enters a wrong password : 
 
         if(!IsPasswordValid) {
-            res.sendStatus(401).send({message: "nice try buddy, not today"});
+           return res.status(401).send({message: "nice try buddy, not today"});
         }
         
         // just gonna console.log(user) to see what the user object looks like

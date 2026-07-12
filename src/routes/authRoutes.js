@@ -118,10 +118,16 @@ router.post('/login', (req,res)=>{
 
     const {username,password} = req.body;
 
+    // destructuring the username and password from the request body
+    // which is sent by the user when they are trying to log in
+
     try {
         const getUser = db.prepare('SELECT * FROM users WHERE username = ?')
         // okay so here we are trying to get the user from the database using the username
         // provided by the user in the request body 
+        // in this case we are using the prepare method to create a prepared statement that selects
+        // all columns from the users table where the username matches the one provided in the request body
+
 
         const user = getUser.get(username);
 
@@ -136,7 +142,7 @@ router.post('/login', (req,res)=>{
 
         
     } catch (error) {
-        
+        console.log(error.message)
     }
 
 

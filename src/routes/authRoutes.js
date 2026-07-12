@@ -1,6 +1,6 @@
 import express from "express";  // this is the file where we will be handling all the authentication related routes like login and register
 import bcrypt from "bcryptjs";    // this is the library which we will be using for hashing the password before storing it in the database, it provides a simple way to hash and compare passwords securely.
-import jwt from "jsonwebtoken"; // this is the library which we will be using for generating and verifying JSON Web Tokens (JWTs), which are used for authentication and authorization in our application.
+import jwt, { sign } from "jsonwebtoken"; // this is the library which we will be using for generating and verifying JSON Web Tokens (JWTs), which are used for authentication and authorization in our application.
 import db from "../db.js"; // this is the file where we have defined our database connection and exported it, we will be using this to interact with our database.
 
 
@@ -158,6 +158,25 @@ router.post('/login', (req,res)=>{
         if(!IsPasswordValid) {
             res.sendStatus(401).send({message: "nice try buddy, not today"});
         }
+        
+        // just gonna console.log(user) to see what the user object looks like
+
+        console.log(user);
+
+        // now if the user exists and the password is valid, we generate a JWT token
+        // for the user to authenticate themselves in future requests
+        // the token will contain the user's id and will be signed with a secret key
+
+        // token will take three arguements: payload, secret key and options like expiration time, algorithm etc.
+        // payload here means the data we want to include in the token, in this case we are
+        // including the user's id, which will be used to identify the user in future requests
+
+        const token = jwt.sign({id : user.id}, process.env.JWT_SECRET, {expiresIn : '24h'});
+
+        res.json({ token });
+
+        // okay so after the creation of the token, we send it back to the client 
+        // in the response so the client can store it and use it for authenticating future requests to the server
 
 
 

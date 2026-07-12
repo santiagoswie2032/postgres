@@ -17,8 +17,9 @@ router.post('/register', (req,res)=>{
     // they are trying to register a new account, we will use these values to create a new user in the database and also to generate a JWT
     // token for the user to authenticate themselves in future requests.
 
-    const hashedPassword = bcrypt.hashSync(password, 1); 
-    const hashedPassword2 = bcrypt.hashSync(password, 8);
+    const hashedPassword = bcrypt.hashSync(password, 7); 
+
+    //const hashedPassword2 = bcrypt.hashSync(password, 8);
     
     //we use the bcrypt library to hash the password before storing it in 
     // the database, this is a security measure to protect the user's
@@ -138,11 +139,24 @@ router.post('/login', (req,res)=>{
 
         if(!user) {return res.status(404).send({message: "User does not exist "})};
 
-        
+        const IsPasswordValid = bcrypt.compareSync(password, user.password);
+
+        // here we basically compare the password entered by the user in the req body
+        // who's trying to log in with the hashed password for that user 
+        // stored in the database that was made when the user registered,
+        // the compareSync method here takes two arguements : plain text password 
+        // and the hashed password from the database and returns a boolean 
+        // value indicating whether the passwords match or not
+
+        // btw both the passwords here are the same gibberish
+        // so you are basically comparing the same two gibberish with each other
+        // because both gibberish were made from same algorithm and same salt rounds value
+        // so that gibberish is unique to that plain text password. 
 
         
     } catch (error) {
         console.log(error.message)
+        res.sendStatus(503)
     }
 
 

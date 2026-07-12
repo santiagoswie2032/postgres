@@ -9,6 +9,19 @@ router.get('/', (req,res)=>{
     // receive the user id from the request query, and then query the database
     // to get all the todos for that user and send them back in the response.
 
+    const getTodos = db.prepare('SELECT * FROM todos WHERE user_id = ?');
+
+    // here we are preparing a SQL statement to select all todos from the todos table where the user_id
+    // matches the user id provided in the request query.
+
+    const todos = getTodos.all(req.userId);
+
+    //getTodos.all() method is used to execute the prepared statement and retrieve all the todos
+    // for the user from the database then that req.userId is used for the user_id in the SQL
+    // statement to get the todos for that specific user. 
+
+    res.json(todos);
+
 });
 
 router.post('/', (req,res)=>{ 

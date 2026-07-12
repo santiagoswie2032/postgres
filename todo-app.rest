@@ -1,11 +1,27 @@
 ### get request (home page)
 GET http://localhost:5757
-###
+
+
+
+### Register POST auth/register
 
 POST http://localhost:5757/auth/register
 Content-Type: application/json
 
 {
-    "username": "santiago",
+    "username": "santiago1",
     "password": "password123"
 }
+
+
+
+### Login POST auth/login
+
+POST http://localhost:5757/auth/login
+Content-Type: application/json
+
+{
+    "username": "santiago1",
+    "password": "password123"
+}
+

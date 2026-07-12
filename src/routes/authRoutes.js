@@ -153,6 +153,16 @@ router.post('/login', (req,res)=>{
         // because both gibberish were made from same algorithm and same salt rounds value
         // so that gibberish is unique to that plain text password. 
 
+        // if the dude enters a wrong password : 
+
+        if(!IsPasswordValid) {
+            res.sendStatus(401).send({message: "nice try buddy, not today"});
+        }
+
+
+
+        
+
         
     } catch (error) {
         console.log(error.message)

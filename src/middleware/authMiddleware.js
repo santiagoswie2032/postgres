@@ -101,8 +101,31 @@ function authMiddleware ( req , res , next)  {
         // jwt.verify(token, secret, callback func) → "Open the package, recompute the signature using my secret, compare it to the one inside, and if they match, hand me back the payload."
 
 
-        jwt.verify(token, process.env.JWT_SECRET, ()=>{
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded)=>{
 
+                if(err){
+                    return res.status(401).json({message:"invalid token"});
+                }
+
+                req.userId = decoded.id
+                next()
+
+                // decoded is the payload that was sent in the token, so we can get the
+                // userId from the payload and add it to the request object
+
+                // basically when jwt is created, its like this 
+                // header.payload.signature
+                // header : had algo and type
+                // payload has the username, userId etc etc
+                // and then you have signature 
+
+                // the jwt is encoded into summ gibberish
+                // like : lkdjfakhdlkf.928u39rhfdjkdsf.0293ujfkdsfsdj
+                // and sent to the client
+                // when client makes a request and sends it back 
+                // you decode it in jwt.verify()
+                // first verify signature, if verified, decode the payload and give
+                // the payload as decoded which is simply the userId, username etc
         })
 
 

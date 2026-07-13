@@ -14,6 +14,11 @@ router.get('/', (req,res)=>{
     // here we are preparing a SQL statement to select all todos from the todos table where the user_id
     // matches the user id provided in the request query.
 
+    // below lines are being written to resolve an error and find the culprit
+
+    console.log(req.userId)
+    console.log(typeof req.userId)
+
     const todos = getTodos.all(req.userId);
 
     //getTodos.all() method is used to execute the prepared statement and retrieve all the todos

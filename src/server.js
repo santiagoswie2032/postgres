@@ -3,6 +3,7 @@ import path, {dirname} from 'path';  //a helper function that extracts folder pa
 import { fileURLToPath } from 'url'; // gives import.meta.url instead of a file url 
 import authRoutes from './routes/authRoutes.js';           //importing routers like /register and /login
 import todoRoutes from './routes/todoRoutes.js';
+import authMiddleware from './middleware/authMiddleware.js';
 
 
 
@@ -42,7 +43,7 @@ app.use(express.static(path.join(__dirname, '../public')));
 
 
 app.use('/auth',authRoutes);    // combines all of the auth endpoints or auth routes and links them to /auth  (those imported routers like /register and /login) 
-app.use('/todos',todoRoutes);    // combines all of the todo endpoints or todo routes and links them to /todos (those imported routers like /get, /post, /put, /delete)
+app.use( '/todos' , authMiddleware , todoRoutes);    // combines all of the todo endpoints or todo routes and links them to /todos (those imported routers like /get, /post, /put, /delete)
 
 
 console.log("born"); 

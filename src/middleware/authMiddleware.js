@@ -13,6 +13,7 @@
  
 
 import jwt from 'jsonwebtoken'; 
+import { decode } from 'punycode';
 
 // this will be used to verify the token sent by the user, that's why we are importing jwt here,
 // and we will use the secret key to verify the token, and we will get the secret key from the environment variables or from a config file.
@@ -101,13 +102,24 @@ function authMiddleware ( req , res , next)  {
         // jwt.verify(token, secret, callback func) → "Open the package, recompute the signature using my secret, compare it to the one inside, and if they match, hand me back the payload."
 
 
+        console.log("authorization header: ", req.headers.authorization);
+
         jwt.verify(token, process.env.JWT_SECRET, (err, decoded)=>{
+
+            console.log("err: ", err);
+
+            console.log("decoded: " , decoded);
 
                 if(err){
                     return res.status(401).json({message:"invalid token"});
                 }
 
-                req.userId = decoded.id
+                req.userId = decoded.userId;
+
+                console.log("req.userId:" ,req.userId);
+
+                console.log("decode.userId: ", decode.userId);
+
                 next()
 
                 // decoded is the payload that was extracted from jwt, so we can get the
@@ -126,13 +138,8 @@ function authMiddleware ( req , res , next)  {
                 // you decode it in jwt.verify()
                 // first verify signature, if verified, decode the payload and give
                 // the payload as decoded which is simply the userId, username etc
-        })
-
-
-
-        
+        }) 
 
 }
-
 
         export default authMiddleware;

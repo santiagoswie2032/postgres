@@ -110,7 +110,7 @@ function authMiddleware ( req , res , next)  {
                 req.userId = decoded.id
                 next()
 
-                // decoded is the payload that was sent in the token, so we can get the
+                // decoded is the payload that was extracted from jwt, so we can get the
                 // userId from the payload and add it to the request object
 
                 // basically when jwt is created, its like this 

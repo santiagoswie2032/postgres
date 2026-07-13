@@ -12,7 +12,10 @@
 // whenever they make a network request to the server.
  
 
-import jwt from 'jsonwebtoken';
+import jwt from 'jsonwebtoken'; 
+
+// this will be used to verify the token sent by the user, that's why we are importing jwt here,
+// and we will use the secret key to verify the token, and we will get the secret key from the environment variables or from a config file.
 
 function authMiddleware ( req , res , next)  {
 
@@ -27,6 +30,12 @@ function authMiddleware ( req , res , next)  {
 
         const token = req.headers['authorization'];
 
+        // the req.headers is an object that contains all the headers 
+        // sent by the client in the request, and the 'authorization' header is where the
+        // token is sent by the client, so we are checking if the 'authorization' header
+        // is present in the request headers, and if it is not present, we will return a 401
+        // status code with a message saying "where's your token my nigga ?"
+
         if(!token) {
             return res.status(401).json({message: "where's your token bruh ?"});
         }
@@ -34,6 +43,8 @@ function authMiddleware ( req , res , next)  {
         // okay so if you get past the above if statement, that means the user has
         // sent a token in the request headers, so now we will verify the token and get 
         // the userId from the payload and add it to the request object
+
+
 
         
 

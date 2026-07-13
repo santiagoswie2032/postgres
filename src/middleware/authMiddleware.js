@@ -30,6 +30,11 @@ function authMiddleware ( req , res , next)  {
         if(!token) {
             return res.status(401).json({message: "where's your token bruh ?"});
         }
+        
+        // okay so if you get past the above if statement, that means the user has
+        // sent a token in the request headers, so now we will verify the token and get 
+        // the userId from the payload and add it to the request object
 
         
+
 }

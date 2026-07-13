@@ -20,6 +20,10 @@ router.get('/', (req,res)=>{
     // for the user from the database then that req.userId is used for the user_id in the SQL
     // statement to get the todos for that specific user. 
 
+    // the request instance here is slightly different from the one in the authRoutes.js file
+    // because here we are using a middleware that will add the userId to the request object after
+    // the user has been authenticated, so we can use that userId to get the todos for that user.
+
     res.json(todos);
 
 });

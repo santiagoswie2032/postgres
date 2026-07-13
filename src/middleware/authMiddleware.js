@@ -49,7 +49,57 @@ function authMiddleware ( req , res , next)  {
         // 2. the secret key to sign the token
         // 3. a callback function to handle the verification result
 
-        
+
+        // payload : simply the information or data you store in the token like userId, username etc
+
+        // signing : whats jwt.sign() ? basically it takes the payload ( e.g. userId = 13) and 
+        // converts it into a jwt format  three parts header.payload.signature
+        // it converts that into a jwt format, header will have smth like : type:jwt, algorithm: hs249
+        // payload will have your data, 
+        // signature = hash(header+payload+secretkey)
+
+
+        // siging doesnt mean encrypting, it means to generate a fingerprint of the data using a secret 
+        // so it looks ugly after that, i mean the fingerprint looks ugly and messy 
+
+        // the hacker cant change the payload simply because the signature and payload are interconnected
+        // they are related, a different payload like userId = 12 and userId = 3 will have different
+        // signatures 
+
+        // in jwt.verify() if the generated signature related to the payload by the process.env.JWT_SECRET
+        // matches the extracted signature from the token that you got from request body, token is genuine
+        // these things gets stored in local storage or cookie
+
+        // and btw a jwt is not encrypted so anyone who has the token can genuinely see the payload 
+        // and the header, they're just base64url-encoded, not hidden
+        // someone can read the data if they have the token but they cant modify it without breaking the signature 
+        // but wait, all you send in the authorization header is a token 
+
+        // the signatue is created using a secret which is saved in env which is just a random string
+        // that only your bithcass server knows, its not an algo hs239 or smth is an algo
+        // whcih is already built into the jwt library
+        // if algo is the recipe (which is public) the secret is ingredient in your fridge 
+        // that only you and your fatass cat knows about not the entire world so its private
+        // algo is public, secret is private to the server
+
+        // a JWT (jsonwebtoken) or simply a token always has three parts, its not random gibberish 
+        // header.payload.signature
+
+        //header tells how it was signes : the algo, the type (nothing secret here)
+
+        // payload is just your data, nothing else like userId and username
+
+        // the token has signature so the server can compare it and authorize the user
+
+        // for the comparison, server or jwt.verify() takes the payload and secret key, generates its own
+        // signature and compares it with the one that came from the client with the payload in 
+        // the token, if both matches its valid
+
+        // Once this clicks, jwt.sign() and jwt.verify() stop feeling like magic functions. They're basically:
+
+        // jwt.sign(payload, secret) → "Take this payload, generate a signature using my secret, and package header + payload + signature into one token."
+        // jwt.verify(token, secret, callback func) → "Open the package, recompute the signature using my secret, compare it to the one inside, and if they match, hand me back the payload."
+
 
         jwt.verify(token, process.env.JWT_SECRET, ()=>{
 

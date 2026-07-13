@@ -44,6 +44,17 @@ function authMiddleware ( req , res , next)  {
         // sent a token in the request headers, so now we will verify the token and get 
         // the userId from the payload and add it to the request object
 
+        // billo we will use three parameters or arguements 
+        // 1. the token to verify
+        // 2. the secret key to sign the token
+        // 3. a callback function to handle the verification result
+
+        
+
+        jwt.verify(token, process.env.JWT_SECRET, ()=>{
+
+        })
+
 
 
         

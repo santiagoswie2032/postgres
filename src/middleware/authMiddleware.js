@@ -13,3 +13,23 @@
  
 
 import jwt from 'jsonwebtoken';
+
+function authMiddleware ( req , res , next)  {
+
+        // okay so the way this middleware works is that it will check if the request 
+        // body has a valid token in the Authorization header.
+
+        // the thing is, after logging in successfully, the user will be given a 
+        // and upon making each request to the server, they send a request body or object
+        // that contains a lot of things like the data they want to send to the server
+        // and also token in the Authorization header, so this middleware will check if the 
+        // token is valid and if it is, it will add the userId to the request object
+
+        const token = req.headers['authorization'];
+
+        if(!token) {
+            return res.status(401).json({message: "where's your token bruh ?"});
+        }
+
+        
+}

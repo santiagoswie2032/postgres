@@ -54,6 +54,12 @@
 <script>
     let token = localStorage.getItem('token')
 
+
+    // below line will remove the token from localStorage, effectively logging the user out
+    // from the app upon each time they refresh the page.
+    
+    localStorage.removeItem('token');
+
     let isLoading = false
     let isAuthenticating = false
     let isRegistration = false
@@ -246,6 +252,10 @@
 
     function logout() {
         // wipe states and clear cached token
+        console.log("removing this token: ",token);
+        localStorage.removeItem('token');         
+
+        window.location.reload();       //refresh to reset the UI state
     }
 
     // CRUD LOGIC

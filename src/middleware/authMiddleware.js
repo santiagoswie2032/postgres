@@ -114,11 +114,11 @@ function authMiddleware ( req , res , next)  {
                     return res.status(401).json({message:"invalid token"});
                 }
 
-                req.userId = decoded.userId;
+                req.userId = decoded.id;
 
                 console.log("req.userId:" ,req.userId);
 
-                console.log("decode.userId: ", decode.userId);
+                console.log("decoded.id: ", decoded.id);
 
                 next()
 

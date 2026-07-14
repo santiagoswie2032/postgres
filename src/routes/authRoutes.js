@@ -67,7 +67,7 @@ router.post('/register', (req,res)=>{
 
         // create token
 
-        const token = jwt.sign({id: result.lastInsertedRowid}, process.env.JWT_SECRET, {expiresIn: '24h'});
+        const token = jwt.sign({id: result.lastInsertRowid}, process.env.JWT_SECRET, {expiresIn: '24h'});
         
 
         //tokens are created to authenticate users in our app, when a user logs in or registers
@@ -132,6 +132,14 @@ router.post('/login', (req,res)=>{
 
         const user = getUser.get(username);
 
+        // debugging...
+
+        console.log ("username:" , username);
+        console.log("user: ", user);
+
+        // debugging..
+
+
         // the get method here is used to execute the prepared statement and retrieve the user from
         // the database, if the user exists, it will return an object containing the user's information
 
@@ -140,6 +148,12 @@ router.post('/login', (req,res)=>{
         if(!user) {return res.status(404).send({message: "User does not exist "})};
 
         const IsPasswordValid = bcrypt.compareSync(password, user.password);
+
+                // debugging...
+
+            console.log("password valid:", IsPasswordValid);
+
+                // debugging...
 
         // here we basically compare the password entered by the user in the req body
         // who's trying to log in with the hashed password for that user 
@@ -171,7 +185,18 @@ router.post('/login', (req,res)=>{
         // payload here means the data we want to include in the token, in this case we are
         // including the user's id, which will be used to identify the user in future requests
 
+
+
+                // debugging...
+
+                console.log("creating token...");
+
+
         const token = jwt.sign({id : user.id}, process.env.JWT_SECRET, {expiresIn : '24h'});
+
+                console.log("token:", token);
+
+                // debugging...
 
         res.json({ token });
 

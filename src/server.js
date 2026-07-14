@@ -50,7 +50,7 @@ console.log("born");
 
 //serving up the html file from the public directory
 app.get('/',(req,res)=>{
-    res.sendFile(path.join(__dirname, 'public','index.html'))
+    res.sendFile(path.join(__dirname, '../public','index.html'))
 })
 
 app.listen(PORT, ()=>{

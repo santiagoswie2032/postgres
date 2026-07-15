@@ -38,6 +38,15 @@ router.post('/', (req,res)=>{
     // receive the user id and the todo text from the request body,
     // and then insert a new todo into the database for that user and send
     // the created todo back in the response.
+
+    const {task} = req.body;
+
+    const insertTodos = db.prepare('INSERT INTO todos (user_id , task) VALUES (? , ?)');
+
+    insertTodos.run(req.userID, task);
+
+    res.json({id: insertTodos.lastID , task , completed: 0});
+    
 })
 
 router.put('/:id', (req,res)=>{

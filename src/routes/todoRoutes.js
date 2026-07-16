@@ -41,13 +41,21 @@ router.post('/', (req,res)=>{
 
     const {task} = req.body;
 
+    // req.body: When a user submits a form or sends data, it arrives inside req.body.
+
+    // const {task} = ...: This is a JavaScript shortcut called destructuring. 
+    // It reaches inside the req.body object, finds a piece of data named task 
+    // (the text of the to-do item), pulls it out, and saves it into a brand-new variable also named task
+
     const insertTodos = db.prepare('INSERT INTO todos (user_id , task) VALUES (? , ?)');
 
     insertTodos.run(req.userID, task);
 
     res.json({id: insertTodos.lastID , task , completed: 0});
     
-})
+        }
+
+    )
 
 router.put('/:id', (req,res)=>{
     // this route will be used to update a todo for a user, it will

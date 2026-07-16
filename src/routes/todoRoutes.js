@@ -55,6 +55,10 @@ router.post('/', (req,res)=>{
     
         }
 
+        // This entire block of code—from (req, res) all the way down to the closing } 
+        // on line 50—is one single function that has no name (an anonymous function). 
+        // It is being treated just like a piece of data and handed directly into router.post().
+
     )
 
 router.put('/:id', (req,res)=>{

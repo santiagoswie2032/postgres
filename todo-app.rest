@@ -22,16 +22,24 @@ Content-Type: application/json
 
 {
     "username": "santiago1",
-    "password": "password12"
+    "password": "password123"
 }
 
 
 ### Fetch all todos GET /Todos (protected, token needed)
 GET http://localhost:5757/todos
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0MjUxMjAwLCJleHAiOjE3ODQzMzc2MDB9.EboDBL0T3_0xOTy11XgBnHbcMWDggcV-Xcxownm17dA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0MjYzNDA2LCJleHAiOjE3ODQzNDk4MDZ9.cnfCFMzitYyjTuwD0TdGTzLxQt0uXNOTWAiYVW_iNIU
+
+
+
 
 ### Create a new Todo POST /Todos (protected)
 POST http://localhost:5757/todos
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0MjUxMjAwLCJleHAiOjE3ODQzMzc2MDB9.EboDBL0T3_0xOTy11XgBnHbcMWDggcV-Xcxownm17dA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0MjYzNDA2LCJleHAiOjE3ODQzNDk4MDZ9.cnfCFMzitYyjTuwD0TdGTzLxQt0uXNOTWAiYVW_iNIU
+Content-Type: application/json
+
+{ 
+    "task": "finishing the sqlite project by saturday."
+}
 
 

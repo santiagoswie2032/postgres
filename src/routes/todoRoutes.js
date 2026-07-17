@@ -49,9 +49,9 @@ router.post('/', (req,res)=>{
 
     const insertTodos = db.prepare('INSERT INTO todos (user_id , task) VALUES (? , ?)');
 
-    insertTodos.run(req.userID, task);
+   const result =  insertTodos.run(req.userId, task);
 
-    res.json({id: insertTodos.lastID , task , completed: 0});
+    res.json({id: result.lastInsertRowId , task , completed: 0});
     
         }
 

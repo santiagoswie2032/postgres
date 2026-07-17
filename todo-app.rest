@@ -25,3 +25,13 @@ Content-Type: application/json
     "password": "password12"
 }
 
+
+### Fetch all todos GET /Todos (protected, token needed)
+GET http://localhost:5757/todos
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0MjUxMjAwLCJleHAiOjE3ODQzMzc2MDB9.EboDBL0T3_0xOTy11XgBnHbcMWDggcV-Xcxownm17dA
+
+### Create a new Todo POST /Todos (protected)
+POST http://localhost:5757/todos
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0MjUxMjAwLCJleHAiOjE3ODQzMzc2MDB9.EboDBL0T3_0xOTy11XgBnHbcMWDggcV-Xcxownm17dA
+
+

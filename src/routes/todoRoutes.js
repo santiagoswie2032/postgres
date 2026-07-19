@@ -77,7 +77,7 @@ router.put('/:id', (req,res)=>{
     const {completed} = req.body;
     const {id} = req.params;
 
-    const updateTodos = db.prepare('UPDATE todos SET task = ?, completed = ?');
+    const updateTodos = db.prepare('UPDATE todos SET completed = ? WHERE id = ?');
 
     updateTodos.run(completed,id);
 
@@ -90,6 +90,14 @@ router.delete('/:id', (req,res)=>{
     // receive the todo id from the request params, and then delete the
     // todo from the database and send a success message back in the response.
 
+    const {id} = req.params;
+    const userID = req.userID;
+
+    const deleteTodos = db.prepare('DELETE FROM todos where id = ? , user_id = ?');
+
+    deleteTodos.run(id,userID);
+
+    res.json({message:"todo has be deleted, sir."});
 
 })
 

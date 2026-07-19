@@ -9,8 +9,8 @@ POST http://localhost:5757/auth/register
 Content-Type: application/json
 
 {
-    "username": "santiago1",
-    "password": "password123"
+    "username": "san@gmail.com",
+    "password": "555555"
 }
 
 
@@ -21,21 +21,20 @@ POST http://localhost:5757/auth/login
 Content-Type: application/json
 
 {
-    "username": "santiago1",
-    "password": "password123"
+    "username": "san@gmail.com",
+    "password": "555555"
 }
 
 
 ### Fetch all todos GET /Todos (protected, token needed)
 GET http://localhost:5757/todos
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0NDQwODE4LCJleHAiOjE3ODQ1MjcyMTh9.xX2fbT3ptY-BI2xLKsItuRk7bHSohoKl9kqh4dIeNwg
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0NDQzMTQ2LCJleHAiOjE3ODQ1Mjk1NDZ9.8aY92oSTBsAiGoG1RaKmDcWxSZcuK13ynD4r7wURAnA
 
 
 
 ### Create a new Todo POST /Todos (protected)
 POST http://localhost:5757/todos
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0NDQwODE4LCJleHAiOjE3ODQ1MjcyMTh9.xX2fbT3ptY-BI2xLKsItuRk7bHSohoKl9kqh4dIeNwg
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0NDQzMTQ2LCJleHAiOjE3ODQ1Mjk1NDZ9.8aY92oSTBsAiGoG1RaKmDcWxSZcuK13ynD4r7wURAnA
 Content-Type: application/json
 
 { 
@@ -44,10 +43,10 @@ Content-Type: application/json
 
 ### Update a Todo PUT /Todods/:ID (protected)
 PUT http://localhost:5757/todos/2
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0NDQwODE4LCJleHAiOjE3ODQ1MjcyMTh9.xX2fbT3ptY-BI2xLKsItuRk7bHSohoKl9kqh4dIeNwg
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0NDQzMTQ2LCJleHAiOjE3ODQ1Mjk1NDZ9.8aY92oSTBsAiGoG1RaKmDcWxSZcuK13ynD4r7wURAnA
 Content-Type: application/json
 
 {
-    "completed": 1
+    "completed": 0
 }
 

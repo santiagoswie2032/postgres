@@ -28,18 +28,26 @@ Content-Type: application/json
 
 ### Fetch all todos GET /Todos (protected, token needed)
 GET http://localhost:5757/todos
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0MjYzNDA2LCJleHAiOjE3ODQzNDk4MDZ9.cnfCFMzitYyjTuwD0TdGTzLxQt0uXNOTWAiYVW_iNIU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0NDQwODE4LCJleHAiOjE3ODQ1MjcyMTh9.xX2fbT3ptY-BI2xLKsItuRk7bHSohoKl9kqh4dIeNwg
 
 
 
 
 ### Create a new Todo POST /Todos (protected)
 POST http://localhost:5757/todos
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0MjYzNDA2LCJleHAiOjE3ODQzNDk4MDZ9.cnfCFMzitYyjTuwD0TdGTzLxQt0uXNOTWAiYVW_iNIU
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0NDQwODE4LCJleHAiOjE3ODQ1MjcyMTh9.xX2fbT3ptY-BI2xLKsItuRk7bHSohoKl9kqh4dIeNwg
 Content-Type: application/json
 
 { 
     "task": "finishing the sqlite project by saturday."
 }
 
+### Update a Todo PUT /Todods/:ID (protected)
+PUT http://localhost:5757/todos/2
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0NDQwODE4LCJleHAiOjE3ODQ1MjcyMTh9.xX2fbT3ptY-BI2xLKsItuRk7bHSohoKl9kqh4dIeNwg
+Content-Type: application/json
+
+{
+    "completed": 1
+}
 

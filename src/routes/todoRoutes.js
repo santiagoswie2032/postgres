@@ -73,8 +73,15 @@ router.put('/:id', (req,res)=>{
     // while modifying the todo, you gotta modify them by the id so that you dont 
     // mess with other people's todos, and also you have to make sure that the user
     // is the owner of the todo and you do that by checking their id when they make a put (modification) request
-    
 
+    const {completed} = req.body;
+    const {id} = req.params;
+
+    const updateTodos = db.prepare('UPDATE todos SET task = ?, completed = ?');
+
+    updateTodos.run(completed,id);
+
+    res.json({message: "todo completed, sir."});
     
 })
 

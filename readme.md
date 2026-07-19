@@ -1,1 +1,1 @@
-i know the env file is public rn, im aware of that, thank you for your kindest concerns.
+A project to learn PostgreSQL database, Prisma ORM and docker in detail.

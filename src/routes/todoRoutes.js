@@ -91,11 +91,11 @@ router.delete('/:id', (req,res)=>{
     // todo from the database and send a success message back in the response.
 
     const {id} = req.params;
-    const userID = req.userID;
+    const userId = req.userId;
 
-    const deleteTodos = db.prepare('DELETE FROM todos where id = ? , user_id = ?');
+    const deleteTodos = db.prepare('DELETE FROM todos WHERE id = ? AND user_id = ?');
 
-    deleteTodos.run(id,userID);
+    deleteTodos.run(id,userId);
 
     res.json({message:"todo has be deleted, sir."});
 

@@ -28,13 +28,12 @@ Content-Type: application/json
 
 ### Fetch all todos GET /Todos (protected, token needed)
 GET http://localhost:5757/todos
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0NDQzMTQ2LCJleHAiOjE3ODQ1Mjk1NDZ9.8aY92oSTBsAiGoG1RaKmDcWxSZcuK13ynD4r7wURAnA
-
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0NDQ1NDI3LCJleHAiOjE3ODQ1MzE4Mjd9.pkH5vQ49LN2qv-fdYw9cm7QhvRDLnTeQxdp4C-q_MFw
 
 
 ### Create a new Todo POST /Todos (protected)
 POST http://localhost:5757/todos
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0NDQzMTQ2LCJleHAiOjE3ODQ1Mjk1NDZ9.8aY92oSTBsAiGoG1RaKmDcWxSZcuK13ynD4r7wURAnA
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0NDQ1NDI3LCJleHAiOjE3ODQ1MzE4Mjd9.pkH5vQ49LN2qv-fdYw9cm7QhvRDLnTeQxdp4C-q_MFw
 Content-Type: application/json
 
 { 
@@ -42,11 +41,16 @@ Content-Type: application/json
 }
 
 ### Update a Todo PUT /Todods/:ID (protected)
-PUT http://localhost:5757/todos/2
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0NDQzMTQ2LCJleHAiOjE3ODQ1Mjk1NDZ9.8aY92oSTBsAiGoG1RaKmDcWxSZcuK13ynD4r7wURAnA
+PUT http://localhost:5757/todos/1
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0NDQ1NDI3LCJleHAiOjE3ODQ1MzE4Mjd9.pkH5vQ49LN2qv-fdYw9cm7QhvRDLnTeQxdp4C-q_MFw
 Content-Type: application/json
 
 {
-    "completed": 0
+    "completed": 1
 }
+
+### Delete a Todo DELETE /Todos /:ID (protected)
+DELETE http://localhost:5757/todos/2
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiaWF0IjoxNzg0NDQ1NDI3LCJleHAiOjE3ODQ1MzE4Mjd9.pkH5vQ49LN2qv-fdYw9cm7QhvRDLnTeQxdp4C-q_MFw
+Content-Type: application/json
 

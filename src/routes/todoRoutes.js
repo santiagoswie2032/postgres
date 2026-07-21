@@ -82,7 +82,7 @@ router.post('/', async (req,res)=>{
 
     )
 
-router.put('/:id', (req,res)=>{
+router.put('/:id', async (req,res)=>{
     // this route will be used to update a todo for a user, it will
     // receive the todo id from the request params, and the updated todo 
     // text and completed status from the request body, and then update
@@ -95,10 +95,21 @@ router.put('/:id', (req,res)=>{
     const {completed} = req.body;
     const {id} = req.params;
 
-    const updateTodos = db.prepare('UPDATE todos SET completed = ? WHERE id = ?');
-    updateTodos.run(completed,id);
+    // const updateTodos = db.prepare('UPDATE todos SET completed = ? WHERE id = ?');
+    // updateTodos.run(completed,id);
 
-    res.json({message: "todo completed, sir."});
+    const updateTodos = await prisma.todo.update({
+        where:{
+            id: parseInt(id),                           // the id you get by decontructing of req.params will be string like '5' so you parse it into Int 5 before verifying it
+            userId: req.userId                          
+        },
+        data:{
+            completed: !!completed               // double !! marks converts truthy/falsy values (like 1 or 0) into actual boolean values like true or false.
+        }
+    })
+
+
+    res.json(updateTodos);
     
 })
 

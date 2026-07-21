@@ -57,7 +57,7 @@ router.post('/', async (req,res)=>{
     // const insertTodos = db.prepare('INSERT INTO todos (user_id , task) VALUES (? , ?)');
     // const result =  insertTodos.run(req.userId, task);
 
-    const result = await prisma.todo.create({
+    const todo = await prisma.todo.create({
         
         data:{
             //task: task,
@@ -69,7 +69,7 @@ router.post('/', async (req,res)=>{
 
     //  res.json({id: result.lastInsertRowId , task , completed: 0});
 
-    res.json(result);
+    res.json(todo);
     
         }
 

@@ -57,7 +57,7 @@ router.post('/', async (req,res)=>{
     // const insertTodos = db.prepare('INSERT INTO todos (user_id , task) VALUES (? , ?)');
     // const result =  insertTodos.run(req.userId, task);
 
-    const result = await prisma.todo.findMany({
+    const result = await prisma.todo.create({
         
         data:{
             //task: task,
@@ -65,7 +65,7 @@ router.post('/', async (req,res)=>{
             userId: req.userId          // key name 'task' and variable name is also 'task' in table todo in schema.prisma so you can just use shorthand task
         }                               // but userId is key in the todo table in schema.prisma file but variable name is req.userId , both are not the same hence you cant use shorthand
 
-    })
+    })                      
 
     //  res.json({id: result.lastInsertRowId , task , completed: 0});
 

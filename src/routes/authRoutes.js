@@ -2,18 +2,22 @@ import express from "express";  // this is the file where we will be handling al
 import bcrypt from "bcryptjs";    // this is the library which we will be using for hashing the password before storing it in the database, it provides a simple way to hash and compare passwords securely.
 import jwt from "jsonwebtoken"; // this is the library which we will be using for generating and verifying JSON Web Tokens (JWTs), which are used for authentication and authorization in our application.
 import db from "../db.js"; // this is the file where we have defined our database connection and exported it, we will be using this to interact with our database.
+import prisma from "../PrismaClient.js";
 
 
 //when we are sub-dividing our routes into different files we have to use express.Router() to create a new router object, which we can then use to define our routes and export it to be used in our main server file.
 const router = express.Router();
 
-router.post('/register', (req,res)=>{
+router.post('/register', async (req,res)=>{
     // this is the route for registering a new user, it will receive
     // the username and password from the request body, hash the password
     // and store the user in the database, we will also generate a JWT token
     // and send it back to the client for authentication purposes.
 
-    const{username, password} = req.body; // we extract the username and password from the request body, which is sent by the user when
+    const{username, password} = req.body; 
+    
+    
+    // we extract the username and password from the request body, which is sent by the user when
     // they are trying to register a new account, we will use these values to create a new user in the database and also to generate a JWT
     // token for the user to authenticate themselves in future requests.
 
@@ -37,17 +41,27 @@ router.post('/register', (req,res)=>{
    // console.log(hashedPassword2);
 
     try{
-        const insertUser = db.prepare('INSERT INTO users (username, password) VALUES (?,?)');
+        // const insertUser = db.prepare('INSERT INTO users (username, password) VALUES (?,?)');
 
-        // now the prepare('') works kinda similar to exec(''), however the prepare method allows us to inject some 
-        // values in the sql query.
+        // // now the prepare('') works kinda similar to exec(''), however the prepare method allows us to inject some 
+        // // values in the sql query.
 
-        // also, after INSERT and INTO, "users" is for the name of the table in the database 
-        // then you basically select the columns which in this case are column "username" & "password"
-        // so after selecting the table then the columns in that table, you provide VALUES
-        // currently its (?,?) which is just placeholders or null values
+        // // also, after INSERT and INTO, "users" is for the name of the table in the database 
+        // // then you basically select the columns which in this case are column "username" & "password"
+        // // so after selecting the table then the columns in that table, you provide VALUES
+        // // currently its (?,?) which is just placeholders or null values
 
-        const result = insertUser.run(username, hashedPassword);
+        // const result = insertUser.run(username, hashedPassword);
+
+        const user = await prisma.user.create({
+            data: {
+                username,
+                password: hashedPassword
+            }
+        })
+
+        // so this is the use of Prisma ORM, you can just get rid of those sql queries 
+        // and just use javascript to create a new uesr instead.
 
         // the run method here is used to execute prepare statement with the values we have injected
         // in this case we are inserting username and hashed password into the users table in the database

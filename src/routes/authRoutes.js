@@ -60,6 +60,8 @@ router.post('/register', async (req,res)=>{
             }
         })
 
+
+
         // so this is the use of Prisma ORM, you can just get rid of those sql queries 
         // and just use javascript to create a new uesr instead.
 
@@ -70,9 +72,18 @@ router.post('/register', async (req,res)=>{
         // how the app works.
 
         const defaultTodo = 'heyyy :D Add your first todo!';
-        const insertTodo = db.prepare('INSERT INTO todos (user_id, task) VALUES (?, ?)');
 
-        insertTodo.run(result.lastInsertRowid, defaultTodo);
+        // const insertTodo = db.prepare('INSERT INTO todos (user_id, task) VALUES (?, ?)');
+        // insertTodo.run(result.lastInsertRowid, defaultTodo);
+
+        await prisma.todo.create({
+            data:{
+                task: defaultTodo,
+                userId: user.id
+            }
+        })
+
+
 
         // okay so here basically if you look at prepare, you see user_id and task right 
         // for user_id - > current id = latest or most previous entry in the users table row's id
@@ -81,7 +92,7 @@ router.post('/register', async (req,res)=>{
 
         // create token
 
-        const token = jwt.sign({id: result.lastInsertRowid}, process.env.JWT_SECRET, {expiresIn: '24h'});
+        const token = jwt.sign({id:user.id}, process.env.JWT_SECRET, {expiresIn: '24h'});
         
 
         //tokens are created to authenticate users in our app, when a user logs in or registers

@@ -30,7 +30,7 @@ router.get('/', async (req,res)=>{
     // because here we are using a middleware that will add the userId to the request object after
     // the user has been authenticated, so we can use that userId to get the todos for that user.
 
-    const todos = await prisma.todos.findMany({
+    const todos = await prisma.todo.findMany({
         where:{
             userId: req.userId
         }
@@ -40,7 +40,7 @@ router.get('/', async (req,res)=>{
 
 });
 
-router.post('/', (req,res)=>{ 
+router.post('/', async (req,res)=>{ 
     // this route will be used to create a new todo for a user, it will
     // receive the user id and the todo text from the request body,
     // and then insert a new todo into the database for that user and send
@@ -54,9 +54,10 @@ router.post('/', (req,res)=>{
     // It reaches inside the req.body object, finds a piece of data named task 
     // (the text of the to-do item), pulls it out, and saves it into a brand-new variable also named task
 
-    const insertTodos = db.prepare('INSERT INTO todos (user_id , task) VALUES (? , ?)');
+    // const insertTodos = db.prepare('INSERT INTO todos (user_id , task) VALUES (? , ?)');
+    // const result =  insertTodos.run(req.userId, task);
 
-   const result =  insertTodos.run(req.userId, task);
+    const result = await prisma.todos
 
     res.json({id: result.lastInsertRowId , task , completed: 0});
     

@@ -149,8 +149,8 @@ router.post('/login', async (req,res)=>{
     try {
         // const getUser = db.prepare('SELECT * FROM users WHERE username = ?')
 
-        const user = await prisma.users.findUnique({
-            where: {
+        const user = await prisma.user.findUnique({
+            where:{
                 username: username
             }
         })

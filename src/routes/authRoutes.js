@@ -61,7 +61,6 @@ router.post('/register', async (req,res)=>{
         })
 
 
-
         // so this is the use of Prisma ORM, you can just get rid of those sql queries 
         // and just use javascript to create a new uesr instead.
 
@@ -128,7 +127,7 @@ router.post('/register', async (req,res)=>{
 
 );
 
-router.post('/login', (req,res)=>{
+router.post('/login', async (req,res)=>{
     // this is the route for logging in a user, it will receive the
     // username and password from the request body, check if the user exists
     // in the database, compare the hashed password with the one stored in the database
@@ -148,14 +147,22 @@ router.post('/login', (req,res)=>{
     // which is sent by the user when they are trying to log in
 
     try {
-        const getUser = db.prepare('SELECT * FROM users WHERE username = ?')
+        // const getUser = db.prepare('SELECT * FROM users WHERE username = ?')
+
+        const user = await prisma.users.findUnique({
+            where: {
+                username: username
+            }
+        })
+
+
         // okay so here we are trying to get the user from the database using the username
         // provided by the user in the request body 
         // in this case we are using the prepare method to create a prepared statement that selects
         // all columns from the users table where the username matches the one provided in the request body
 
 
-        const user = getUser.get(username);
+        // const user = getUser.get(username);
 
         // debugging...
 

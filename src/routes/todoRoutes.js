@@ -113,7 +113,7 @@ router.put('/:id', async (req,res)=>{
     
 })
 
-router.delete('/:id', (req,res)=>{
+router.delete('/:id', async (req,res)=>{
     // this route will be used to delete a todo for a user, it will
     // receive the todo id from the request params, and then delete the
     // todo from the database and send a success message back in the response.
@@ -121,11 +121,17 @@ router.delete('/:id', (req,res)=>{
     const {id} = req.params;
     const userId = req.userId;
 
-    const deleteTodos = db.prepare('DELETE FROM todos WHERE id = ? AND user_id = ?');
+    // const deleteTodos = db.prepare('DELETE FROM todos WHERE id = ? AND user_id = ?');
+    // deleteTodos.run(id,userId);
 
-    deleteTodos.run(id,userId);
+    const deleteTodo = await prisma.todo.delete({
+        where:{
+            id: parseInt(id),
+            userId
+        }
+    })
 
-    res.json({message:"todo has be deleted, sir."});
+    res.json(deleteTodo);
 
 })
 

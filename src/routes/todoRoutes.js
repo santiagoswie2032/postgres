@@ -69,7 +69,7 @@ router.post('/', async (req,res)=>{
 
     //  res.json({id: result.lastInsertRowId , task , completed: 0});
 
-    res.json(todo);
+    res.json(todo); 
     
         }
 

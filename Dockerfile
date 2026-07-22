@@ -9,3 +9,12 @@ COPY package*json .
 
 # Install the dependencies
 RUN npm install 
+
+# Copy the rest of the files to the main directory in the container
+COPY . .
+
+# Expose the port which the server is running on
+EXPOSE 5757
+
+# Commands to run the app
+CMD [ "node","./src/server.js" ]

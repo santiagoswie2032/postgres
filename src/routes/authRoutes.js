@@ -1,7 +1,7 @@
 import express from "express";  // this is the file where we will be handling all the authentication related routes like login and register
 import bcrypt from "bcryptjs";    // this is the library which we will be using for hashing the password before storing it in the database, it provides a simple way to hash and compare passwords securely.
 import jwt from "jsonwebtoken"; // this is the library which we will be using for generating and verifying JSON Web Tokens (JWTs), which are used for authentication and authorization in our application.
-import db from "../db.js"; // this is the file where we have defined our database connection and exported it, we will be using this to interact with our database.
+// import db from "../db.js"; // this is the file where we have defined our database connection and exported it, we will be using this to interact with our database.
 import prisma from "../PrismaClient.js";
 
 

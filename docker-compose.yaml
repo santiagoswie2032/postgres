@@ -8,3 +8,9 @@ services:
             - JWT_SECRET=vikalps_random_string
             - NODE_ENV=development
             - PORT=5757
+        ports:
+            -"5757:5757"
+        depends_on:
+            - db
+        volumes:
+            - .:/app

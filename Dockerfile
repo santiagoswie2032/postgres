@@ -4,11 +4,11 @@ FROM node:22-alpine
 # Set the working directory in the container
 WORKDIR /app
 
-# Copy the package.json and package-lock.json files to the container
-COPY package*json .             
+# Copy dependency manifests first for better layer caching
+COPY package*.json ./
 
 # Install the dependencies
-RUN npm install 
+RUN npm install
 
 # Copy the rest of the files to the main directory in the container
 COPY . .
@@ -19,4 +19,4 @@ RUN npx prisma generate
 EXPOSE 5757
 
 # Commands to run the app
-CMD [ "node","./src/server.js" ]   
+CMD ["node", "./src/server.js"]

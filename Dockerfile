@@ -13,6 +13,8 @@ RUN npm install
 # Copy the rest of the files to the main directory in the container
 COPY . .
 
+RUN npx prisma generate
+
 # Expose the port which the server is running on
 EXPOSE 5757
 

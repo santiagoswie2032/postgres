@@ -9,7 +9,7 @@ services:
             - NODE_ENV=development
             - PORT=5757
         ports:
-            -"5757:5757"
+            - "5757:5757"
         depends_on:
             - db
         volumes:
@@ -23,7 +23,7 @@ services:
             - POSTGRES_PASSWORD=postgres
             - POSTGRES_DB=todoapp
         ports:
-            -"5432:5432"
+            - "5432:5432"
         volumes:
             -  postgres-data:var/lib/postgresql/data
         
